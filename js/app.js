@@ -1,5 +1,5 @@
 // Definice cesty k JSON souboru
-const humoreskyDataJson = './data/humoresky.json';
+const humoreskyDataJson = 'https://smich-app.netlify.app/data/humoresky.json';
 let currentAudio = null;
 
 // Načtení posledního data změny JSON souboru
