@@ -1,5 +1,5 @@
 // Definice cesty k JSON souboru
-const humoreskyDataJson = './data/humoresky.json';
+const dataHumoreskyJson = './data/humoresky.json';
 let currentAudio = null;
 const jsConfetti = new JSConfetti()
 
@@ -8,7 +8,7 @@ const importSavedData = localStorage.getItem('humoreskyData');
 
 // Pokud nejsou data v LocalStorage k dispozici, načtou se z JSON souboru
 if (!importSavedData) {
-  fetch(humoreskyDataJson)
+  fetch(dataHumoreskyJson)
     .then(response => {
       if (!response.ok) {
         throw new Error('Nepodařilo se načíst JSON soubor');
@@ -29,17 +29,16 @@ if (!importSavedData) {
   // Pokud jsou data v LocalStorage k dispozici a jsou správného formátu, zobrazí se
   try {
     const savedData = JSON.parse(importSavedData);
-    if (Array.isArray(savedData)) {
+    if (Array.isArray(savedData.humoresky)) {
       // Pokud jsou data v LocalStorage, loadDataAndDisplay() se zavolá ihned
       loadDataAndDisplay(savedData);
     } else {
-      throw new Error('Nastala chyba: Data v LocalStorage nejsou ve správném formátu');
+      throw new Error('Data v LocalStorage nejsou ve správném formátu');
     }
   } catch (error) {
     console.error('Nastala chyba:', error);
   }
 }
-
 
 // Funkce pro načtení a zobrazení dat z LocalStorage
 function loadDataAndDisplay() {
@@ -55,7 +54,7 @@ function loadDataAndDisplay() {
     cardsList.innerHTML = "";
     
     // Procházení dat pomocí metody forEach a vypisování na stránku
-    humoreskyData.forEach((card, index) => {
+    humoreskyData.humoresky.forEach((card, index) => {
       let cardHtml = `
       <article class="card-body text-primary">
       <h2 class="card-title"> ${card.title} </h2>
@@ -88,7 +87,6 @@ function loadDataAndDisplay() {
 function addNewCard() {
   let title = document.getElementById("titleInput").value;
 	let content = document.getElementById("contentInput").value;
-  let confettiContainer = document.getElementById("submitNewCard");
   
   // Pokud je title nebo content prázdný, zobrazí se alert s upozorněním
 	if (title === "" || content === "") {
@@ -104,7 +102,7 @@ function addNewCard() {
     let humoreskyData = JSON.parse(localStorage.getItem('humoreskyData'));
     
     // Přidání nové karty do pole dat
-    humoreskyData.push({
+    humoreskyData.humoresky.push({
       title: title,
       content: content,
       likes: 0 // Přidání výchozího počtu lajků
@@ -113,10 +111,12 @@ function addNewCard() {
     // Uložení aktualizovaných dat do LocalStorage
     localStorage.setItem('humoreskyData', JSON.stringify(humoreskyData));
 
+    // Spuštění animace, kde se vystřeli 3prdele smajlíků! :D
     jsConfetti.addConfetti({
-      emojis: ['😂', '🤣'],
+      emojis: ['😂', '🤣', '👏'],
       confettiNumber: 100,
-   })
+    })
+
     // Zavolání funkce pro zobrazení aktualizovaných dat z LocalStorage
     loadDataAndDisplay();
 
@@ -135,7 +135,7 @@ function like(title, index) {
   let humoreskyData = JSON.parse(localStorage.getItem('humoreskyData'));
   
   // Najít humořešku podle titulu a přidat like
-  humoreskyData.forEach((card,i) => {
+  humoreskyData.humoresky.forEach((card,i) => {
     if (card.title === title && i === index) {
       card.likes++; // Zvýšení počtu lajků o 1
     }
@@ -143,6 +143,12 @@ function like(title, index) {
 
   // Aktualizovat data v LocalStorage
   localStorage.setItem('humoreskyData', JSON.stringify(humoreskyData));
+
+  // Spuštění animace, kde se vystřeli 3prdele smajlíků! :D
+  jsConfetti.addConfetti({
+    emojis: ['😂', '🤣'],
+    confettiNumber: 100,
+  })
 
   // Znovu načíst a zobrazit data
   loadDataAndDisplay();
