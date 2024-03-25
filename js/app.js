@@ -9,28 +9,37 @@ const importSavedData = localStorage.getItem('humoreskyData');
 // Pokud nejsou data v LocalStorage k dispozici, načtou se z JSON souboru
 if (!importSavedData) {
   fetch(humoreskyDataJson)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Nepodařilo se načíst JSON soubor');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Uložení načtených dat do LocalStorage
-    localStorage.setItem('humoreskyData', JSON.stringify(data));
-    // Načtení aktuálního data změny souboru pro pozdější porovnání
-    const lastModified = response.headers.get('last-modified');
-    localStorage.setItem('lastModified', lastModified);
-    
-    loadDataAndDisplay();
-  })
-  .catch(error => {
-    console.error('Nastala chyba při načítání nebo ukládání JSON souboru:', error);
-  });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Nepodařilo se načíst JSON soubor');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Uložení načtených dat do LocalStorage
+      localStorage.setItem('humoreskyData', JSON.stringify(data));
+
+      // Zde se zavolá loadDataAndDisplay() až po uložení dat do localStorage
+      loadDataAndDisplay();
+    })
+    .catch(error => {
+      console.error('Nastala chyba při načítání nebo ukládání JSON souboru:', error);
+    });
 } else {
-  // Pokud jsou data v LocalStorage k dispozici, zobrazí se
-  loadDataAndDisplay();
+  // Pokud jsou data v LocalStorage k dispozici a jsou správného formátu, zobrazí se
+  try {
+    const savedData = JSON.parse(importSavedData);
+    if (Array.isArray(savedData)) {
+      // Pokud jsou data v LocalStorage, loadDataAndDisplay() se zavolá ihned
+      loadDataAndDisplay(savedData);
+    } else {
+      throw new Error('Nastala chyba: Data v LocalStorage nejsou ve správném formátu');
+    }
+  } catch (error) {
+    console.error('Nastala chyba:', error);
+  }
 }
+
 
 // Funkce pro načtení a zobrazení dat z LocalStorage
 function loadDataAndDisplay() {
