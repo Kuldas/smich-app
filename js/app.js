@@ -86,7 +86,7 @@ function addNewCard() {
     playFail();
     setTimeout(function() {
       alert('Nadpis a humoreska musí být vyplněny, protože jinak se není čemu smát! 🤣');
-    }, 100); // Časový prodleva v milisekundách před zobrazením alertu
+    }, 500); // Časový prodleva v milisekundách před zobrazením alertu
     return;
 	} 
   // Pokud je title a content vyplněný, přidá se nová karta
