@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxíky plné smíchu 🤣</title>
+    <!-- Přidání faviconu -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <!-- Vložení CDN pro TailwindCSS a DaisyUI -->
+    <link rel="stylesheet" href="https://unpkg.com/daisyui@latest/dist/full.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate.CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Konfety -->
+    <script src="./js/confetti.min.js"></script>
+    <!-- Vložení JS souboru -->
+    <script src="./js/app.js"></script>
+</head>
+<body>
+    <main data-theme="coffee" class="grid bg-primary-content py-8 px-8 gap-16">
+        <section class="flex justify-center">
+            <article class="card items-center bg-base-300 text-primary p-8 space-y-16 w-full sm:w-3/4">
+                <h1 class="text-5xl font-bold uppercase text-center">Boxíky smíchu 🤣</h1>
+                <div class="flex flex-col gap-8 w-full max-w-screen-sm">
+                    <fieldset class="flex flex-col gap-1">
+                        <label for="titleInput" class="text-xl">Název humoresky</label>
+                        <input type="text" id="titleInput" name="titleInput" class="input w-full" placeholder="Čemu se dnes zasmějeme?">
+                    </fieldset>
+                    <fieldset class="flex flex-col gap-1">
+                        <label for="contentInput" class="text-xl">Humoreska</label>
+                        <textarea type="textarea" id="contentInput" name="contentInput" rows="3" class="resize-y textarea" placeholder="Napiš nějakou svou vtipnou humoresku :D"></textarea>
+                    </fieldset>
+                    <aside class="card-actions justify-center items-center gap-4">
+                        <button id="submitNewCard" onclick="addNewCard()" class="btn btn-primary">Přidat humoresku 😂</button>
+                        <a href="https://www.youtube.com/watch?v=Xu-QfE_1ksk" class="link link-primary link-hover" target="_blank">Proč se smát?</a>
+                    </aside>
+                </div>
+            </article>
+        </section>
+        <section>
+            <h2 class="text-3xl text-primary font-bold text-center uppercase mb-4">Seznam boxíků smíchu</h2>
+            <ul id="funnyCards" class="grid items-start sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Tady se zobrazí všechny cards. Více v ./js/app.js -->
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
