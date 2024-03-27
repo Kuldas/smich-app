@@ -14,35 +14,64 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Animate.CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <main data-theme="coffee" class="grid bg-primary-content py-8 px-8 gap-16">
         <section class="flex justify-center">
-            <article class="card items-center bg-base-300 text-primary p-8 space-y-16 w-full sm:w-3/4">
-                <h1 class="text-5xl font-bold uppercase text-center">Boxíky smíchu 🤣</h1>
+            <article class="card shadow items-center bg-base-300 text-primary p-8 space-y-16 w-full sm:w-3/4">
+                <h1 class="caveat-heading text-5xl font-bold text-center -rotate-2">
+                    Humoresky v boxíku 
+                        <label class="swap text-4xl items-baseline swap-flip">
+                            <input type="checkbox" />
+                            <span class="swap-on">😂</span>
+                            <span class="swap-off">🤣</span>
+                  </label></h1>
                 <div class="flex flex-col gap-8 w-full max-w-screen-sm">
                     <fieldset class="flex flex-col gap-1">
-                        <label for="titleInput" class="text-xl">Název humoresky</label>
-                        <input type="text" id="titleInput" name="titleInput" class="input w-full" placeholder="Čemu se dnes zasmějeme?">
+                        <label for="titleInput" class="text-lg">Název humoresky</label>
+                        <input type="text" id="titleInput" name="titleInput" class="input w-full" placeholder="Jak budeme říkat tvé humoresce? 🤣" required>
                     </fieldset>
                     <fieldset class="flex flex-col gap-1">
-                        <label for="contentInput" class="text-xl">Humoreska</label>
-                        <textarea type="textarea" id="contentInput" name="contentInput" rows="3" class="resize-y textarea" placeholder="Napiš nějakou svou vtipnou humoresku :D"></textarea>
+                        <label for="contentInput" class="text-lg">Tvoje humoreska</label>
+                        <textarea type="textarea" id="contentInput" name="contentInput" rows="3" class="resize-y textarea text-base" placeholder="Tady je prostor pro tvou humoresku! 🤣" required></textarea>
                     </fieldset>
                     <aside class="card-actions justify-center items-center gap-4">
                         <button id="submitNewCard" onclick="addNewCard()" class="btn btn-primary">Přidat humoresku 😂</button>
                         <a href="https://www.youtube.com/watch?v=Xu-QfE_1ksk" class="link link-primary link-hover" target="_blank">Proč se smát?</a>
                     </aside>
+                    <div id="alertBox" role="alert" class="alert alert-error animate__animated hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Název humoresky a její znění musí být vyplněny, protože jinak se nebude čemu smát! 🤣</span>
+                        <div class="avatar">
+                            <div class="w-24 rounded">
+                              <img src="./assets/img/yablko.png" alt="Yalbko vidí, že si nevyplnil!" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
         </section>
         <section>
-            <h2 class="text-3xl text-primary font-bold text-center uppercase mb-4">Seznam boxíků smíchu</h2>
+            <h2 class="caveat-heading text-5xl text-primary font-bold text-center mb-8">Seznam boxíků smíchu</h2>
             <ul id="funnyCards" class="grid items-start sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Tady se zobrazí všechny cards. Více v ./js/app.js -->
             </ul>
         </section>
     </main>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .caveat-heading {
+                font-family: "Caveat", cursive;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                font-style: normal;
+            }
+        }
+      </style>
     <!-- Konfety -->
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <!-- Vložení JS souboru -->
