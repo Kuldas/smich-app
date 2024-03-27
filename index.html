@@ -23,6 +23,12 @@
     <main data-theme="coffee" class="grid bg-primary-content py-8 px-8 gap-16">
         <section class="flex justify-center">
             <article class="card shadow items-center bg-base-300 text-primary p-8 space-y-16 w-full sm:w-3/4">
+                <a href="" onclick="clearLocalStorage()" class="link link-primary link-hover text-xs absolute flex justify-center gap-2 top-0 right-0 p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                    Resetovat data
+                </a>
                 <h1 class="caveat-heading text-5xl font-bold text-center -rotate-2">
                     Humoresky v boxíku 
                         <label class="swap text-4xl items-baseline swap-flip">
@@ -41,7 +47,7 @@
                     </fieldset>
                     <aside class="card-actions justify-center items-center gap-4">
                         <button id="submitNewCard" onclick="addNewCard()" class="btn btn-primary">Přidat humoresku 😂</button>
-                        <a href="https://www.youtube.com/watch?v=Xu-QfE_1ksk" class="link link-primary link-hover" target="_blank">Proč se smát?</a>
+                        <a href="https://www.youtube.com/watch?v=Xu-QfE_1ksk" class="link link-primary link-hover" target="_blank">Proč se smějeme?</a>
                     </aside>
                     <div id="alertBox" role="alert" class="alert alert-error animate__animated hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
