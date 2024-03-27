@@ -223,6 +223,15 @@ function showAlert() {
 }
 
 //
+// FUNKCE PRO VYČIŠTĚNÍ LOCALSTORAGE A NAČTENÍ DUMMY DAT
+//
+
+function clearLocalStorage() {
+  localStorage.removeItem('humoreskyData'); // Odstraníme data z localStorage
+  window.location.reload(); // Obnovíme stránku, což vyvolá načtení a zobrazení nových dat
+}
+
+//
 // FUNKCE PRO PŘEHRÁNÍ ZVUKU PO NEVYPLNĚNÍ POVINNÝCH INPUTŮ
 //
 
