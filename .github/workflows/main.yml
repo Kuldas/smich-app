@@ -1,0 +1,23 @@
+name: Build and Publish Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Create ZIP Archive
+      run: zip -r smich-app.zip ./*
+
+    - name: Publish Package
+      uses: actions/upload-artifact@v2
+      with:
+        name: smich-app
+        path: smich-app.zip
