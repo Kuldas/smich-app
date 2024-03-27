@@ -2,10 +2,10 @@
 // GLOBÁLNÍ PROMNĚNÉ
 //
 
-const dataHumoreskyJson = './data/humoresky.json';
+const dataHumoreskyJson = "./data/humoresky.json";
 let audioFail = new Audio("./assets/sounds/fail.mp3");
-let audioAddCard = new Audio('./assets/sounds/applause.mp3');
-let audioLike = new Audio('./assets/sounds/laugh.mp3');
+let audioAddCard = new Audio("./assets/sounds/applause.mp3");
+let audioLike = new Audio("./assets/sounds/laugh.mp3");
 let currentAudio = null;
 let canLike = true;
 const jsConfetti = new JSConfetti()
@@ -227,8 +227,8 @@ function showAlert() {
 //
 
 function clearLocalStorage() {
-  localStorage.removeItem('humoreskyData'); // Odstraníme data z localStorage
-  window.location.reload(); // Obnovíme stránku, což vyvolá načtení a zobrazení nových dat
+  localStorage.removeItem('humoreskyData'); // Odstranění dat z LocalStorage
+  window.location.reload(); // Obnovení stránky
 }
 
 //
