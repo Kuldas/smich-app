@@ -65,6 +65,14 @@ function loadDataAndDisplay() {
 
     // Vyčištění seznamu
     cardsList.innerHTML = "";
+
+    // Zobrazení počtu humoresek
+    let totalHumoresky = getTotalHumoresky();
+    document.getElementById('totalHumoresky').innerText = totalHumoresky;
+
+    // Zobrazení celkového počtu lajků
+    let totalLikes = getTotalLikes();
+    document.getElementById('totalLikes').innerText = totalLikes;
     
     // Procházení dat pomocí forEach a vypsání na stránku
     humoreskyData.humoresky.forEach((card, index) => {
@@ -154,6 +162,55 @@ function addNewCard() {
 }
 
 //
+// FUNKCE PRO ZÍSKÁNÍ CELKOVÉHO POČTU HUMORESEK
+//
+
+function getTotalHumoresky() {
+  // Načtení dat z LocalStorage
+  const importSavedData = localStorage.getItem('humoreskyData');
+
+  // Pokud jsou data v LocalStorage k dispozici, vrací se celkový počet humoresek
+  if (importSavedData) {
+    const humoreskyData = JSON.parse(importSavedData);
+    
+    // Zjištění počtu humoresek
+    let totalHumoresky = humoreskyData.humoresky.length;
+
+    return totalHumoresky;
+  } else {
+    // Pokud nejsou data v LocalStorage k dispozici, tak se vrátí 0
+    return 0;
+  }
+}
+
+//
+// FUNKCE PRO ZÍSKÁNÍ CELKOVÉHO POČTU LAJKŮ
+//
+
+function getTotalLikes() {
+  // Načtení dat z LocalStorage
+  const importSavedData = localStorage.getItem('humoreskyData');
+
+  // Pokud jsou data v LocalStorage k dispozici, vrací se celkový počet lajků
+  if (importSavedData) {
+    const humoreskyData = JSON.parse(importSavedData);
+    
+    // Promněná pro startovní počet lajků
+    let totalLikes = 0;
+
+    // Procházení všech humoresek a sečtení jejich lajků
+    humoreskyData.humoresky.forEach(humoreska => {
+      totalLikes += humoreska.likes;
+    });
+
+    return totalLikes;
+  } else {
+    // Pokud nejsou data v LocalStorage k dispozici, vrátí se vrátí 0
+    return 0;
+  }
+}
+
+//
 // FUNKCE PRO OLAJKOVÁNÍ HUMORESKY
 //
 
@@ -201,6 +258,7 @@ function like(title, index) {
 //
 // FUNKCE PRO ZOBRAZENÍ ALERTU
 //
+
 function showAlert() {
   let alertBox = document.getElementById("alertBox");
 
